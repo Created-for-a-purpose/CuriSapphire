@@ -1,0 +1,46 @@
+.label_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  &__label {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  &__input_text {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+  }
+}
+
+.dashboard_form_container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__img {
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 100%;
+        & img {
+            height: 80%;
+        }
+  }
+  &__form {
+    width: 40%;
+    padding: var(--pad);
+  }
+}

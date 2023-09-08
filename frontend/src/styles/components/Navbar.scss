@@ -1,0 +1,24 @@
+.navbar_container {
+  width: 100vw;
+  height: calc(80px - 2  * var(--pad));
+  display: flex;
+  padding: var(--pad);
+  border-bottom: 1px solid black;
+  background-color: #fff;
+  position: fixed;
+  &__left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
