@@ -13,8 +13,7 @@ export default function DashboardForm(params) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(id);
-    if (id !== "Patient" && id !== "Hospital" && id !== "Pharmacy") {
+    if (id !== "patient" && id !== "hospital" && id !== "pharmacy") {
         navigate("/dashboard");
     }
   }, [id, navigate]);
@@ -31,7 +30,7 @@ export default function DashboardForm(params) {
   });
 
   const data = {
-    Patient: [
+    patient: [
       ["Name", (e) => setInput({ ...input, Name: e.target.value })],
       ["Age", (e) => setInput({ ...input, Age: e.target.value })],
       [
@@ -45,7 +44,7 @@ export default function DashboardForm(params) {
       ],
       ["Email", (e) => setInput({ ...input, Email: e.target.value })],
     ],
-    Hospital: [
+    hospital: [
       ["Name", (e) => setInput({ ...input, Name: e.target.value })],
       ["Address", (e) => setInput({ ...input, Address: e.target.value })],
       [
@@ -58,7 +57,7 @@ export default function DashboardForm(params) {
         (e) => setInput({ ...input, "License Number": e.target.value }),
       ],
     ],
-    Pharmacy: [
+    pharmacy: [
       ["Name", (e) => setInput({ ...input, Name: e.target.value })],
       ["Address", (e) => setInput({ ...input, Address: e.target.value })],
       [
@@ -90,11 +89,11 @@ export default function DashboardForm(params) {
   }
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar/>
       <div className="dashboard_form_container">
         <div className="dashboard_form_container__img">
             {
-                id === "Patient" ? <img src={img} alt="patient" /> : id === "Hospital" ? <img src={img1} alt="hospital" /> : <img src={img2} alt="pharmacy" />
+                id === "patient" ? <img src={img} alt="patient" /> : id === "hospital" ? <img src={img1} alt="hospital" /> : <img src={img2} alt="pharmacy" />
             }
         </div>
         <div className="dashboard_form_container__form">
@@ -109,7 +108,7 @@ export default function DashboardForm(params) {
                 ></Input>
               );
             })}
-            <ConnectButton height="40px" width="100px" text="Submit"></ConnectButton>
+            <ConnectButton height="40px" width="100px" text="Submit"/>
         </div>
       </div>
     </>
