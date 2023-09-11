@@ -1,4 +1,4 @@
-import React, {forwardRef} from "react";
+import React from "react";
 import "../styles/components/Navbar.scss";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 // import { Link } from "react-router-dom";

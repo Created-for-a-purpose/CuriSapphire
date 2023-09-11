@@ -19,8 +19,6 @@ export default function DashboardForm(params) {
     }
   }, [id, navigate, initialId]);
 
-
-
   return (
     <>
       <Navbar/>
