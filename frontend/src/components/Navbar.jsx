@@ -1,6 +1,6 @@
-import React from "react";
+import React, {forwardRef} from "react";
 import "../styles/components/Navbar.scss";
-import ConnectButton from "./ConnectButton";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 // import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -11,7 +11,7 @@ const Navbar = () => {
           Dashboard
         </div>
         <div className="navbar_container__right">
-          <ConnectButton height={"100%"} width={"100px"} text="Connect"/>
+          <ConnectButton accountStatus="address" chainStatus="icon"/>
         </div>
       </div>
     </>

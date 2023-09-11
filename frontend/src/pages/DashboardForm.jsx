@@ -24,11 +24,11 @@ export default function DashboardForm(params) {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar/>
       <div className="dashboard_form_container">
         <div className="dashboard_form_container__img">
             {
-                id === "Patient" ? <img src={img} alt="patient" /> : id === "Hospital" ? <img src={img1} alt="hospital" /> : <img src={img2} alt="pharmacy" />
+                id === "patient" ? <img src={img} alt="patient" /> : id === "hospital" ? <img src={img1} alt="hospital" /> : <img src={img2} alt="pharmacy" />
             }
         </div>
         <Form></Form>
