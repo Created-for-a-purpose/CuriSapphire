@@ -2,94 +2,24 @@ import "../styles/pages/DashboardForm.scss";
 import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ConnectButton from "../components/ConnectButton";
 import img from "../images/patient.svg";
 import img1 from "../images/doctor.svg";
 import img2 from "../images/pharmacy.svg";
+import Form from "../components/Form";
 
 export default function DashboardForm(params) {
-  const { id } = useParams();
+  const { id : initialId } = useParams();
+  const [id, setId] = useState(initialId);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (id !== "patient" && id !== "hospital" && id !== "pharmacy") {
-        navigate("/dashboard");
+    setId(initialId);
+    if (id.toLocaleLowerCase() !== "patient" && id.toLocaleLowerCase() !== "hospital" && id.toLocaleLowerCase() !== "pharmacy") {
+      navigate("/dashboard");
     }
-  }, [id, navigate]);
-
-  const [input, setInput] = useState({
-    Type: id,
-    Name: "",
-    Age: "",
-    "Blood Group": "",
-    Address: "",
-    "Phone Number": "",
-    Email: "",
-    "License Number": "",
-  });
-
-  const data = {
-    patient: [
-      ["Name", (e) => setInput({ ...input, Name: e.target.value })],
-      ["Age", (e) => setInput({ ...input, Age: e.target.value })],
-      [
-        "Blood Group",
-        (e) => setInput({ ...input, "Blood Group": e.target.value }),
-      ],
-      ["Address", (e) => setInput({ ...input, Address: e.target.value })],
-      [
-        "Phone Number",
-        (e) => setInput({ ...input, "Phone Number": e.target.value }),
-      ],
-      ["Email", (e) => setInput({ ...input, Email: e.target.value })],
-    ],
-    hospital: [
-      ["Name", (e) => setInput({ ...input, Name: e.target.value })],
-      ["Address", (e) => setInput({ ...input, Address: e.target.value })],
-      [
-        "Phone Number",
-        (e) => setInput({ ...input, "Phone Number": e.target.value }),
-      ],
-      ["Email", (e) => setInput({ ...input, Email: e.target.value })],
-      [
-        "License Number",
-        (e) => setInput({ ...input, "License Number": e.target.value }),
-      ],
-    ],
-    pharmacy: [
-      ["Name", (e) => setInput({ ...input, Name: e.target.value })],
-      ["Address", (e) => setInput({ ...input, Address: e.target.value })],
-      [
-        "Phone Number",
-        (e) => setInput({ ...input, "Phone Number": e.target.value }),
-      ],
-      ["Email", (e) => setInput({ ...input, Email: e.target.value })],
-      [
-        "License Number",
-        (e) => setInput({ ...input, "License Number": e.target.value }),
-      ],
-    ],
-  };
+  }, [id, navigate, initialId]);
 
 
-  function Input({ label, value, onChange }) {
-    return (
-      <div className="label_container">
-        <label className="label_container__label">{label} *</label>
-        <input
-          type="text"
-          className="label_container__input_text"
-          value={value}
-          onChange={onChange}
-          required
-        />
-      </div>
-    );
-  }
-
-  const submit = () => {
-
-  }
 
   return (
     <>
@@ -100,20 +30,7 @@ export default function DashboardForm(params) {
                 id === "patient" ? <img src={img} alt="patient" /> : id === "hospital" ? <img src={img1} alt="hospital" /> : <img src={img2} alt="pharmacy" />
             }
         </div>
-        <div className="dashboard_form_container__form">
-          {
-            data[id]?.map((val, ind) => {
-              return (
-                <Input
-                  label={val[0]}
-                  value={input[val[0]]}
-                  onChange={val[1]}
-                  key={ind}
-                ></Input>
-              );
-            })}
-            <ConnectButton height="40px" width="100px" text="Submit" clickHandle={submit}/>
-        </div>
+        <Form></Form>
       </div>
     </>
   );
