@@ -7,7 +7,6 @@ import img from "../images/patient.svg";
 import img1 from "../images/doctor.svg";
 import img2 from "../images/pharmacy.svg";
 
-
 export default function DashboardForm(params) {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -87,6 +86,11 @@ export default function DashboardForm(params) {
       </div>
     );
   }
+
+  const submit = () => {
+
+  }
+
   return (
     <>
       <Navbar/>
@@ -108,7 +112,7 @@ export default function DashboardForm(params) {
                 ></Input>
               );
             })}
-            <ConnectButton height="40px" width="100px" text="Submit"/>
+            <ConnectButton height="40px" width="100px" text="Submit" clickHandle={submit}/>
         </div>
       </div>
     </>
