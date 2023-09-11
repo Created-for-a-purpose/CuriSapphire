@@ -20,7 +20,7 @@ export default function Form() {
     setId(initialId);
   }, [id, initialId]);
   const data = {
-    Patient: [
+    patient: [
       ["Name", (e) => setInput({ ...input, Name: e.target.value })],
       ["Age", (e) => setInput({ ...input, Age: e.target.value })],
       [
@@ -34,7 +34,7 @@ export default function Form() {
       ],
       ["Email", (e) => setInput({ ...input, Email: e.target.value })],
     ],
-    Hospital: [
+    hospital: [
       ["Name", (e) => setInput({ ...input, Name: e.target.value })],
       ["Address", (e) => setInput({ ...input, Address: e.target.value })],
       [
@@ -47,7 +47,7 @@ export default function Form() {
         (e) => setInput({ ...input, "License Number": e.target.value }),
       ],
     ],
-    Pharmacy: [
+    pharmacy: [
       ["Name", (e) => setInput({ ...input, Name: e.target.value })],
       ["Address", (e) => setInput({ ...input, Address: e.target.value })],
       [

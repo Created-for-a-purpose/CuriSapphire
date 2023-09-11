@@ -15,7 +15,7 @@ export default function DashboardForm(params) {
 
   useEffect(() => {
     setId(initialId);
-    if (id.toLocaleLowerCase() !== "patient" && id.toLocaleLowerCase() !== "hospital" && id.toLocaleLowerCase() !== "Pharmacy") {
+    if (id.toLocaleLowerCase() !== "patient" && id.toLocaleLowerCase() !== "hospital" && id.toLocaleLowerCase() !== "pharmacy") {
       navigate("/dashboard");
     }
   }, [id, navigate, initialId]);
