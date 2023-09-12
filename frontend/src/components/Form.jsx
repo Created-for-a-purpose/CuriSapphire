@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import ConnectButton from "./ConnectButton";
 import Input from "./Input";
 import { dataAddress, dataAbi } from "./../constants"
-import { writeContract } from "wagmi/actions"
-import { keccak256 } from "viem";
+import { ethers } from "ethers";  
+import * as sapphire from "@oasisprotocol/sapphire-paratime"
 
 export default function Form() {
   const { id: initialId } = useParams();
@@ -107,6 +107,15 @@ export default function Form() {
     return true;
   }
 
+  const getDataContract = async () =>{
+  const dataContract = new ethers.Contract(
+    dataAddress,
+    dataAbi,
+    await sapphire.wrap(new ethers.BrowserProvider(window.ethereum)).getSigner()
+  )
+  return dataContract;
+  }
+
   const submit = async () => {
     if(!check()) return;
 
@@ -119,12 +128,8 @@ export default function Form() {
       const email = input.Email;
       
       try{
-      await writeContract({
-        address: dataAddress,
-        abi: dataAbi,
-        functionName: "addPatientData",
-        args: [name, age, bloodGroup, address, phoneNumber, email],
-      })
+      const dataContract = await getDataContract();
+      await dataContract.addPatientData(name, age, bloodGroup, address, phoneNumber, email)
       clearFields();
     } catch(e) { console.log(e) } 
     }
@@ -136,12 +141,8 @@ export default function Form() {
       const licenseNumber = input["License Number"];
 
       try{
-      await writeContract({
-        address: dataAddress,
-        abi: dataAbi,
-        functionName: "addHospitalData",
-        args: [name, address, phoneNumber, email, licenseNumber],
-      })
+      const dataContract = await getDataContract();
+      await dataContract.addHospitalData(name, address, phoneNumber, email, licenseNumber)
       clearFields();
     } catch(e) { console.log(e) }
     }
@@ -153,17 +154,12 @@ export default function Form() {
       const licenseNumber = input["License Number"];
 
       try{
-      await writeContract({
-        address: dataAddress,
-        abi: dataAbi,
-        functionName: "addPharmacyData",
-        args: [name, address, phoneNumber, email, licenseNumber],
-      })
+      const dataContract = await getDataContract();
+      await dataContract.addPharmacyData(name, address, phoneNumber, email, licenseNumber)
       clearFields();
     } catch(e) { console.log(e) }
-    }
-    
   }
+}
 
   return (
     <>
