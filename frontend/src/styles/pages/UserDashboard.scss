@@ -1,0 +1,10 @@
+.user_dashboard_container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    &__content {
+        width: calc(100vw - var(--sidebar-width));
+        padding: 2rem;
+        padding-top: var(--dashboard-pad);
+    }
+}

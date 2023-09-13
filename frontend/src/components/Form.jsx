@@ -171,6 +171,8 @@ export default function Form() {
               value={input[val[0]]}
               onChange={val[1]}
               key={ind}
+              isRequired = {true}
+              type={"text"}
             ></Input>
           );
         })}

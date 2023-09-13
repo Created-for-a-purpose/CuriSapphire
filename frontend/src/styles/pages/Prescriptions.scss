@@ -1,0 +1,12 @@
+.prescriptions_container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    display: flex;
+    justify-content: center;
+    &__content {
+        width: calc(100vw - var(--sidebar-width));
+        padding: 2rem;
+        padding-top: var(--dashboard-pad);
+    }
+}
