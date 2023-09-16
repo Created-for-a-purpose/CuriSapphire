@@ -15,6 +15,10 @@ import {
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public';
 import { sepolia } from 'wagmi/chains';
+import UserDashboard from './pages/UserDashboard';
+import Prescriptions from './pages/Prescriptions';
+import PrescriptionCard from './components/PrescriptionCard';
+import Reports from './pages/Reports';
 
 const sapphire = {
   id: 23_295,
@@ -66,6 +70,10 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/:id" element={<DashboardForm />} />
+        <Route path="/dashboard/user" element={<UserDashboard />} />
+        <Route path="/dashboard/prescriptions" element={<Prescriptions />} />
+        <Route path="/dashboard/prescriptions/:id" element={<PrescriptionCard />} />
+        <Route path="/dashboard/reports" element={<Reports />} />
       </Routes>
       </RainbowKitProvider>
     </WagmiConfig>

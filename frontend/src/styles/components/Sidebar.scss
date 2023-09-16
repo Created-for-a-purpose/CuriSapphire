@@ -1,0 +1,21 @@
+.sidebar_container {
+    height: 100vh;
+    width: var(--sidebar-width);
+    border-right: 1px solid;
+    background-color: var(--blue-0);
+    padding-top: var(--dashboard-pad);
+    &__links {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        &__link {
+            padding-bottom: var(--pad);
+            padding-left: var(--pad);
+            width: 100%;
+            &:hover {
+                background-color: var(--blue-1);
+            }
+        }
+    }
+}

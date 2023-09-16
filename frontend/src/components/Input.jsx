@@ -1,13 +1,14 @@
-export default function Input({ label, value, onChange }) {
+import "../styles/components/Input.scss"
+
+export default function Input({ label, value, onChange, isRequired, type }) {
     return (
       <div className="label_container">
-        <label className="label_container__label">{label} *</label>
+        <label className="label_container__label">{label} {isRequired && "*"}</label>
         <input
-          type="text"
+          type={type}
           className="label_container__input_text"
           value={value}
           onChange={onChange}
-          required
         />
       </div>
     );
