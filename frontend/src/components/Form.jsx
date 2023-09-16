@@ -2,11 +2,18 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ConnectButton from "./ConnectButton";
 import Input from "./Input";
-import { dataAddress, dataAbi } from "./../constants"
+import { proxyAddress, proxyAbi } from "./../constants"
 import { ethers } from "ethers";  
 import * as sapphire from "@oasisprotocol/sapphire-paratime"
+import { useAccount } from "wagmi"
+import { signMessage } from "wagmi/actions"
+import { useAddRecentTransaction } from "@rainbow-me/rainbowkit"
 
 export default function Form() {
+  const account = useAccount()
+  const addRecentTransaction = useAddRecentTransaction()
+  const provider = new ethers.BrowserProvider(window.ethereum)
+  const sapphireWrappedProvider = sapphire.wrap(provider);
   const { id: initialId } = useParams();
   const [id, setId] = useState(initialId);
   const [input, setInput] = useState({
@@ -107,13 +114,13 @@ export default function Form() {
     return true;
   }
 
-  const getDataContract = async () =>{
-  const dataContract = new ethers.Contract(
-    dataAddress,
-    dataAbi,
-    await sapphire.wrap(new ethers.BrowserProvider(window.ethereum)).getSigner()
+  const getProxyContract = async () =>{
+  const proxyContract = new ethers.Contract(
+    proxyAddress,
+    proxyAbi,
+    await sapphireWrappedProvider.getSigner()
   )
-  return dataContract;
+  return proxyContract;
   }
 
   const submit = async () => {
@@ -128,8 +135,18 @@ export default function Form() {
       const email = input.Email;
       
       try{
-      const dataContract = await getDataContract();
-      await dataContract.addPatientData(name, age, bloodGroup, address, phoneNumber, email)
+      const proxyContract = await getProxyContract();
+      const message = await proxyContract.getSigHash(account.address);
+      const signature = await signMessage({message: {raw: message}})
+      const tx = await proxyContract.makeDataTx(signature,
+        {owner: account.address, name, age, bloodGroup, _address: address, contact: phoneNumber, email})
+      const txResponse = await sapphireWrappedProvider.broadcastTransaction(tx)
+      addRecentTransaction({
+        hash: txResponse.hash,
+        description: "Add Patient Data",
+      })
+      const txReceipt = await sapphireWrappedProvider.waitForTransaction(txResponse.hash) 
+      if(!txReceipt || txReceipt.status!==1) alert("Transaction failed!")
       clearFields();
     } catch(e) { console.log(e) } 
     }
@@ -141,8 +158,7 @@ export default function Form() {
       const licenseNumber = input["License Number"];
 
       try{
-      const dataContract = await getDataContract();
-      await dataContract.addHospitalData(name, address, phoneNumber, email, licenseNumber)
+      // const proxyContract = await getProxyContract();
       clearFields();
     } catch(e) { console.log(e) }
     }
@@ -154,8 +170,7 @@ export default function Form() {
       const licenseNumber = input["License Number"];
 
       try{
-      const dataContract = await getDataContract();
-      await dataContract.addPharmacyData(name, address, phoneNumber, email, licenseNumber)
+      // const proxyContract = await getProxyContract();
       clearFields();
     } catch(e) { console.log(e) }
   }

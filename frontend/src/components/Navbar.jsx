@@ -11,7 +11,7 @@ const Navbar = () => {
           Dashboard
         </div>
         <div className="navbar_container__right">
-          <ConnectButton accountStatus="address" chainStatus="icon"/>
+          <ConnectButton chainStatus="icon"/>
         </div>
       </div>
     </>

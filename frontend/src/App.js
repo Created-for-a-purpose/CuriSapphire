@@ -25,7 +25,7 @@ const sapphire = {
   nativeCurrency: {
     decimals: 18,
     name: 'Sapphire Test Rose',
-    symbol: 'TEST',
+    symbol: 'ROSE',
   },
   rpcUrls: {
    public: { http: ['https://testnet.sapphire.oasis.dev/'] },
@@ -54,7 +54,7 @@ const wagmiConfig = createConfig({
 export default function App() {
   return (
     <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains} modalSize="compact" coolMode showRecentTransactions={true}
+      <RainbowKitProvider chains={chains}  modalSize="compact" coolMode showRecentTransactions={true}
       theme={lightTheme({
         accentColor: '#ffb9e5',
         accentColorForeground: 'black',
