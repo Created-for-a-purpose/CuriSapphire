@@ -1,13 +1,14 @@
 import "../styles/components/Sidebar.scss";
+import { Link } from "react-router-dom";
 
 export default function Sidebar(params) {
   return (
     <>
       <div className="sidebar_container">
         <div className="sidebar_container__links">
-            <div className="sidebar_container__links__link">User</div>
+            <Link className="sidebar_container__links__link" to={"/dashboard/user"}>User</Link>
             <div className="sidebar_container__links__link">Prescriptions</div>
-            <div className="sidebar_container__links__link">Reports</div>
+            <Link className="sidebar_container__links__link" to = {"/dashboard/reports"}>Reports</Link>
             <div className="sidebar_container__links__link">Chat</div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./styles/App.scss"
 import { Routes, Route } from "react-router-dom"
 import LandingPage from "./pages/LandingPage.jsx"
@@ -55,7 +55,14 @@ const wagmiConfig = createConfig({
   publicClient
 })
 
+
 export default function App() {
+  const [signature, setSignature] = useState('');
+
+  console.log(signature);
+  const handleSignature = (signature) => {
+    setSignature(signature);
+  };
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}  modalSize="compact" coolMode showRecentTransactions={true}
@@ -70,10 +77,10 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/:id" element={<DashboardForm />} />
-        <Route path="/dashboard/user" element={<UserDashboard />} />
+        <Route path="/dashboard/user" element={<UserDashboard sig={signature} setSig={handleSignature}/>} />
         <Route path="/dashboard/prescriptions" element={<Prescriptions />} />
         <Route path="/dashboard/prescriptions/:id" element={<PrescriptionCard />} />
-        <Route path="/dashboard/reports" element={<Reports />} />
+        <Route path="/dashboard/reports" element={<Reports sig={signature}/>} />
       </Routes>
       </RainbowKitProvider>
     </WagmiConfig>

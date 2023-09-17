@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import ReportTable from "../components/ReportTable"; // Import the ReportTable component
 import "../styles/pages/Reports.scss";
 import Sidebar from "../components/Sidebar";
 
-export default function Reports(params) {
+export default function Reports({ sig }) {
   // Sample report data
   const reports = [
     {
