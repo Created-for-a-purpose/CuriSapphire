@@ -19,6 +19,8 @@ import UserDashboard from './pages/UserDashboard';
 import Prescriptions from './pages/Prescriptions';
 import PrescriptionCard from './components/PrescriptionCard';
 import Reports from './pages/Reports';
+import Pharmacy from './pages/Pharmacy';
+import Hospital from './pages/Hospital';
 
 const sapphire = {
   id: 23_295,
@@ -81,6 +83,8 @@ export default function App() {
         <Route path="/dashboard/prescriptions" element={<Prescriptions />} />
         <Route path="/dashboard/prescriptions/:id" element={<PrescriptionCard />} />
         <Route path="/dashboard/reports" element={<Reports sig={signature}/>} />
+        <Route path="/pharmacy" element={<Pharmacy sig={signature}/>} />
+        <Route path="/hospital" element={<Hospital/>} />
       </Routes>
       </RainbowKitProvider>
     </WagmiConfig>
