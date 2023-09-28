@@ -31,7 +31,7 @@ function ReportTable({ reports }) {
                 </a>
               </td>
               <td>
-                <FaLock />
+              <FaLock />
               </td>
             </tr>
           ))}

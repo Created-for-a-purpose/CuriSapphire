@@ -33,7 +33,7 @@ export default function Hospital(params) {
               <FcInfo className="hospital_container__right__form__top__logo"></FcInfo>
               <Input
                 label={
-                  "Your doctor is requesting access to your latest lab reports"
+                  "Your doctor is requesting read access to your latest lab reports"
                 }
                 type={"text"}
                 value={intent}
@@ -46,7 +46,8 @@ export default function Hospital(params) {
               <div className="hospital_container__right__form__bottom__tip">
                 Tip: You can use ZKP to prove your diagnosis to the doctor
               </div>
-              <div className="hospital_container__right__form__bottom__ask">Your doctor wants to know if you've been diagnosed with any heart disease in the past</div>
+              <div className="hospital_container__right__form__bottom__ask">Your doctor wants to know if you've been diagnosed with any heart disease in the past
+              <br/>{'('} Endocarditis, Cardiomyopathy, Angina, etc.{')'}</div>
               <ConnectButton
                 text={"Generate ZKP"}
                 height={"50px"}
@@ -66,7 +67,7 @@ export default function Hospital(params) {
                 Tip: ZK verification status will be shared automatically
               </div>
               <div className="hospital_container__right__form__bottom__ask">
-                This will give the doctor access to your above lab reports
+                This will give your doctor access to the above lab reports
               </div>
               <ConnectButton
                 text={"Grant Access 🔓"}
