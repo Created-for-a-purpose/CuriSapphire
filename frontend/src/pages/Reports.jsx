@@ -1,23 +1,30 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import Navbar from "../components/Navbar";
 import ReportTable from "../components/ReportTable"; // Import the ReportTable component
 import "../styles/pages/Reports.scss";
 import Sidebar from "../components/Sidebar";
+import useSignature from "../hooks/useSignature";
 
-export default function Reports({ sig }) {
+export default function Reports() {
+
+  const sig = useSignature();
+
+  console.log('report' + sig.signature);
   // Sample report data
   const reports = [
     {
+      ID: "1",
       hospitalName: "Hospital A",
       doctorName: "Dr. Smith",
       diagnosis: "Infection",
-      reportLink: "https://example.com/report1",
+      reportLink: "1",
     },
     {
+      ID: "2",
       hospitalName: "Clinic B",
       doctorName: "Dr. Johnson",
       diagnosis: "Fracture",
-      reportLink: "https://example.com/report2",
+      reportLink: "1",
     },
     // Add more report data as needed
   ];

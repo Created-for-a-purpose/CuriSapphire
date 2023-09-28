@@ -8,9 +8,10 @@ import * as sapphire from "@oasisprotocol/sapphire-paratime";
 import { signMessage } from "wagmi/actions";
 import { useAccount } from "wagmi";
 import { ethers } from "ethers";
+import useSignature from "../hooks/useSignature";
 
-export default function UserDashboard({ sig, setSig }) {
-  
+export default function UserDashboard() {
+  const sig = useSignature();
   const account = useAccount();
   // Sample user data
   const [userData, setUserData] = useState({
@@ -31,11 +32,11 @@ export default function UserDashboard({ sig, setSig }) {
           dataAbi,
           await sapphire.wrap(provider).getSigner()
         );
-        let signature = sig;
-        if (sig === '') {
+        let signature = sig.signature;
+        if (sig.signature === '') {
           const message = await dataContract.getHash(account.address);
           signature = await signMessage({ message: { raw: message } })
-          setSig(signature);
+          sig.setSignature(signature);
         }
         const userData = await dataContract.getPatientData(account.address, signature);
         setUserData({

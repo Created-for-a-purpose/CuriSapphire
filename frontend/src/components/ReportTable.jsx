@@ -1,6 +1,7 @@
 import React from "react";
 import { FaLock } from "react-icons/fa"; // Import the lock icon
 import "../styles/components/ReportTable.scss";
+import { Link } from "react-router-dom";
 
 function ReportTable({ reports }) {
   return (
@@ -8,6 +9,7 @@ function ReportTable({ reports }) {
       <table>
         <thead>
           <tr>
+            <th>ID</th>
             <th>Hospital Name</th>
             <th>Doctor Name</th>
             <th>Diagnosis</th>
@@ -18,17 +20,18 @@ function ReportTable({ reports }) {
         <tbody>
           {reports.map((report, index) => (
             <tr key={index}>
+              <td>{report.ID}</td>
               <td>{report.hospitalName}</td>
               <td>{report.doctorName}</td>
               <td>{report.diagnosis}</td>
               <td>
-                <a
-                  href={report.reportLink}
+                <Link
+                  to={`./${report.reportLink}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   View Report
-                </a>
+                </Link>
               </td>
               <td>
               <FaLock />
