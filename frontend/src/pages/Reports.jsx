@@ -12,21 +12,18 @@ export default function Reports() {
   console.log('report' + sig.signature);
   // Sample report data
   const reports = [
-    {
-      ID: "1",
-      hospitalName: "Hospital A",
-      doctorName: "Dr. Smith",
-      diagnosis: "Endocarditis",
-      reportLink: "1",
-    },
-    {
-      ID: "2",
-      hospitalName: "Clinic B",
-      doctorName: "Dr. Johnson",
-      diagnosis: "Infection",
-      reportLink: "1",
-    },
-    // Add more report data as needed
+    [
+      "1",
+      "Hospital A",
+      "Dr. Smith",
+      "Endocarditis",
+    ],
+    [
+      "2",
+      "Hospital A",
+      "Dr. Smith",
+      "Endocarditis",
+    ]
   ];
 
   return (
