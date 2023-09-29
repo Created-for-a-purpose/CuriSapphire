@@ -8,13 +8,13 @@ const Navbar = () => {
     <>
       <div className="navbar_container">
         <div className="navbar_container__left">
-          <div className="navbar_container__left__name">NAME OF THE WEBSITE</div>
+          <div className="navbar_container__left__name">zk-Health</div>
         </div>
         <div className="navbar_container__middle">
           <Link to = "/dashboard/user" className="navbar_container__middle__link">Dashboard</Link>
-          <Link to = "/hospital" className="navbar_container__middle__link">Hospital</Link>
+          <Link to = "/hospital" className="navbar_container__middle__link">Hospitals</Link>
           <Link to = "/pharmacy" className="navbar_container__middle__link">Pharmacy</Link>
-          <Link to = "/pharmacy" className="navbar_container__middle__link">Marketplace</Link>
+          <Link to = "/pharmacy" className="navbar_container__middle__link">DataHub</Link>
         </div>
         <div className="navbar_container__right">
           <ConnectButton chainStatus="icon" />

@@ -82,8 +82,8 @@ export default function App() {
         <Route path="/dashboard/user" element={<UserDashboard/>} />
         <Route path="/dashboard/prescriptions" element={<Prescriptions />} />
         <Route path="/dashboard/prescriptions/:id" element={<PrescriptionCard />} />
-        <Route path="/dashboard/reports" element={<Reports sig={signature}/>} />
-        <Route path="/pharmacy" element={<Pharmacy sig={signature}/>} />
+        <Route path="/dashboard/reports" element={<Reports/>} />
+        <Route path="/pharmacy" element={<Pharmacy/>} />
         <Route path="/hospital" element={<Hospital/>} />
       </Routes>
       </RainbowKitProvider>
