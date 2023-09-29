@@ -14,7 +14,7 @@ function ReportTable({ reports }) {
             <th>Doctor Name</th>
             <th>Diagnosis</th>
             <th>Report Link</th>
-            <th>Locked</th>
+            <th>Access</th>
           </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@ function ReportTable({ reports }) {
                 </Link>
               </td>
               <td>
-              <FaLock />
+              <FaLock /> &nbsp;Only you 
               </td>
             </tr>
           ))}

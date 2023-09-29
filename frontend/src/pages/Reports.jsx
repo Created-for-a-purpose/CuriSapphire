@@ -16,14 +16,14 @@ export default function Reports() {
       ID: "1",
       hospitalName: "Hospital A",
       doctorName: "Dr. Smith",
-      diagnosis: "Infection",
+      diagnosis: "Endocarditis",
       reportLink: "1",
     },
     {
       ID: "2",
       hospitalName: "Clinic B",
       doctorName: "Dr. Johnson",
-      diagnosis: "Fracture",
+      diagnosis: "Infection",
       reportLink: "1",
     },
     // Add more report data as needed
