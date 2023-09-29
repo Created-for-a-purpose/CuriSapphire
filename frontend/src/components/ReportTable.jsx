@@ -1,40 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaLock } from "react-icons/fa"; // Import the lock icon
 import "../styles/components/ReportTable.scss";
-import { Link } from "react-router-dom";
+import ReportCard from "./ReportCard";
 
 function ReportTable({ reports }) {
+  const [viewReport, setViewReport] = useState(false);
+
+  const header = [
+    "ID",
+    "Hospital Name",
+    "Doctor Name",
+    "Diagnosis",
+    "View Report",
+    "Access",
+  ];
+
+  const handleViewReport = () => {
+    if (viewReport) {
+      setViewReport(false);
+    } else {
+      setViewReport(true);
+    }
+  };
+
   return (
-    <div className="report-table">
-      <table>
-        <thead>
+    <div className="report_table_container">
+      <ReportCard
+        isVisible={viewReport} // Set this based on your logic
+        setIsVisible={setViewReport}
+        reportData={{
+          patientName: "John Doe",
+          doctorName: "Dr. Smith",
+          labName: "Sample Lab",
+          testName: "Blood Test",
+          testDate: "2023-09-29",
+          testDetails: [
+            { name: "Sample A", value: "10.5", referenceRange: "5.0-15.0" },
+            { name: "Sample B", value: "3.2", referenceRange: "2.0-4.0" },
+            { name: "Sample A", value: "10.5", referenceRange: "5.0-15.0" },
+            { name: "Sample B", value: "3.2", referenceRange: "2.0-4.0" },
+            { name: "Sample A", value: "10.5", referenceRange: "5.0-15.0" },
+            { name: "Sample B", value: "3.2", referenceRange: "2.0-4.0" },
+            { name: "Sample A", value: "10.5", referenceRange: "5.0-15.0" },
+            { name: "Sample B", value: "3.2", referenceRange: "2.0-4.0" },
+            // Add more test details as needed
+          ],
+          diagnosis: "Healthy",
+        }}
+      />
+
+      <table className="report_table_container__table">
+        <thead className="report_table_container__table__header">
           <tr>
-            <th>ID</th>
-            <th>Hospital Name</th>
-            <th>Doctor Name</th>
-            <th>Diagnosis</th>
-            <th>Report Link</th>
-            <th>Access</th>
+            {header.map((item, index) => (
+              <th
+                key={index}
+                className="report_table_container__table__header__heading"
+              >
+                {item}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {reports.map((report, index) => (
             <tr key={index}>
-              <td>{report.ID}</td>
-              <td>{report.hospitalName}</td>
-              <td>{report.doctorName}</td>
-              <td>{report.diagnosis}</td>
-              <td>
-                <Link
-                  to={`./${report.reportLink}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+              {report.map((item, index) => (
+                <td
+                  key={index}
+                  className="report_table_container__table__row__data"
                 >
-                  View Report
-                </Link>
+                  {item}
+                </td>
+              ))}
+              <td className="report_table_container__table__row__data">
+                <div
+                  onClick={handleViewReport}
+                  className="report_table_container__table__row__data__button"
+                >
+                  👀
+                </div>
               </td>
-              <td>
-              <FaLock /> &nbsp;Only you 
+              <td className="report_table_container__table__row__data">
+                <FaLock /> &nbsp;Only you
               </td>
             </tr>
           ))}
