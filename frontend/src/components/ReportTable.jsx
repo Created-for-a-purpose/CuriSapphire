@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import useToggle from '../hooks/useToggle';
 import { FaLock } from "react-icons/fa"; // Import the lock icon
 import "../styles/components/ReportTable.scss";
 import ReportCard from "./ReportCard";
 
 function ReportTable({ reports }) {
-  const [viewReport, setViewReport] = useState(false);
+  const [viewReport, setViewReport] = useToggle(false);
 
   const header = [
     "ID",
@@ -14,14 +15,6 @@ function ReportTable({ reports }) {
     "View Report",
     "Access",
   ];
-
-  const handleViewReport = () => {
-    if (viewReport) {
-      setViewReport(false);
-    } else {
-      setViewReport(true);
-    }
-  };
 
   return (
     <div className="report_table_container">
@@ -35,8 +28,6 @@ function ReportTable({ reports }) {
           testName: "Blood Test",
           testDate: "2023-09-29",
           testDetails: [
-            { name: "Sample A", value: "10.5", referenceRange: "5.0-15.0" },
-            { name: "Sample B", value: "3.2", referenceRange: "2.0-4.0" },
             { name: "Sample A", value: "10.5", referenceRange: "5.0-15.0" },
             { name: "Sample B", value: "3.2", referenceRange: "2.0-4.0" },
             { name: "Sample A", value: "10.5", referenceRange: "5.0-15.0" },
@@ -75,7 +66,7 @@ function ReportTable({ reports }) {
               ))}
               <td className="report_table_container__table__row__data">
                 <div
-                  onClick={handleViewReport}
+                  onClick={setViewReport}
                   className="report_table_container__table__row__data__button"
                 >
                   👀

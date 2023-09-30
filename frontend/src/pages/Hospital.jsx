@@ -73,6 +73,7 @@ export default function Hospital(params) {
                 text={"Grant Access 🔓"}
                 height={"50px"}
                 width={"150px"}
+                clickHandle={() => setVerified(true)}
               ></ConnectButton>
             </div>
           </div>
