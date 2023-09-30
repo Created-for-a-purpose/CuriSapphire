@@ -7,9 +7,32 @@ import { GiMedicines } from "react-icons/gi";
 import { SiOpenai } from "react-icons/si";
 import { BsPrescription2 } from "react-icons/bs";
 import { useState } from "react";
+import { OpenAI } from "openai"
+
 export default function Pharmacy() {
   const [intent, setIntent] = useState("");
   const [prescriptionZkp, setPrescriptionZkp] = useState("");
+  const apiKey = "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"
+
+  const openAi = new OpenAI({
+    apiKey,
+    dangerouslyAllowBrowser: true
+  })
+
+  const handleIntent = async () => {
+    const chat = await openAi.chat.completions.create({
+      messages: [{
+        role: "user",
+        content: "Extract the drug name (y), quantity (x) and dose (z) (dose is optional) from the user's request to purchase a medicine. The user's request might be in the form: 'I want to purchase x tablets of y drug of dose z mg.' Provide the extracted drug name (y), quantity (x) and if dose is provided, dose (z) in your response in json object of array for each medicine. If you think that the medicine name does not correspond to a real one or you encounter an invalid medicine amount then you should respond with a hyphen(-). " +
+        `This is the user's prompt: ${intent}`
+      }],
+      model: "gpt-3.5-turbo"
+    })
+    const response = JSON.parse(chat.choices[0].message.content)
+    console.log(response)
+    
+  }
+
   return (
     <>
       <Navbar></Navbar>
@@ -45,6 +68,7 @@ export default function Pharmacy() {
                 text={"Order OTC medicine"}
                 height={"50px"}
                 width={"200px"}
+                clickHandle={handleIntent}
               ></ConnectButton>
             </div>
             <div className="pharmacy_container__right__form__bottom">
@@ -58,9 +82,9 @@ export default function Pharmacy() {
               ></Input>
               <div className="hospital_container__right__checks">
                 <div className="hospital_container__right__checks__check">
-                    {false ? "🟡 " : true? "🟢 " : "🔴 "}Prescription validity checks
+                  {false ? "🟡 " : true ? "🟢 " : "🔴 "}Prescription validity checks
                 </div>
-            </div><br/>
+              </div><br />
               <ConnectButton
                 text={"Generate ZKP"}
                 height={"50px"}
