@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/components/Navbar.scss";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Link } from "react-router-dom";
-import { useToggle } from "../hooks/useToggle"
+import useToggle from "../hooks/useToggle"
 
 const Navbar = () => {
   const [showDashboardDropdown, setShowDashboardDropdown] = useToggle(false);
