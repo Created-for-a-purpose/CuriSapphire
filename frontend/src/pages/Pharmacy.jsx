@@ -12,8 +12,8 @@ import { OpenAI } from "openai"
 export default function Pharmacy() {
   const [intent, setIntent] = useState("");
   const [prescriptionZkp, setPrescriptionZkp] = useState("");
-  const apiKey = "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"
-
+  const apiKey = "YOUR_API_KEY"
+  
   const openAi = new OpenAI({
     apiKey,
     dangerouslyAllowBrowser: true
