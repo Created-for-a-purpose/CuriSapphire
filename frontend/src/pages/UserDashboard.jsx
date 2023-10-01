@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
 import UserData from "../components/UserData"; // Import the UserData component
 import "../styles/pages/UserDashboard.scss";
 import { dataAddress, dataAbi } from "../constants";
@@ -21,7 +20,7 @@ export default function UserDashboard() {
     address: "-",
     phoneNumber: "-",
     email: "-",
-  })
+  });
 
   useEffect(() => {
     async function retrieveData() {
@@ -33,12 +32,15 @@ export default function UserDashboard() {
           await sapphire.wrap(provider).getSigner()
         );
         let signature = sig.signature;
-        if (sig.signature === '') {
+        if (sig.signature === "") {
           const message = await dataContract.getHash(account.address);
-          signature = await signMessage({ message: { raw: message } })
+          signature = await signMessage({ message: { raw: message } });
           sig.setSignature(signature);
         }
-        const userData = await dataContract.getPatientData(account.address, signature);
+        const userData = await dataContract.getPatientData(
+          account.address,
+          signature
+        );
         setUserData({
           name: userData[2],
           age: userData[3].toString(),
@@ -46,9 +48,8 @@ export default function UserDashboard() {
           address: userData[5],
           phoneNumber: userData[6],
           email: userData[7],
-        })
-      }
-      catch (err) {
+        });
+      } catch (err) {
         console.log(err);
       }
     }
@@ -59,12 +60,8 @@ export default function UserDashboard() {
     <>
       <Navbar />
       <div className="user_dashboard_container">
-        <Sidebar />
         <div className="user_dashboard_container__content">
-          <div className="user_dashboard_container__content__data">
-            {/* Pass the user data as props to the UserData component */}
-            <UserData {...userData} />
-          </div>
+          <UserData {...userData} />
         </div>
       </div>
     </>

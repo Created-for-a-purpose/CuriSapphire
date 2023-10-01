@@ -1,84 +1,59 @@
-import React from 'react';
-import '../styles/components/PrescriptionCard.scss';
+import React from "react";
+import "../styles/components/PrescriptionCard.scss";
+import { MdCancel } from "react-icons/md";
 
-const PrescriptionPad = () => {
-  // Sample data for doctor information, patient information, and medications
-  const doctorInfo = [
-    { label: 'Doctor:', value: 'Dr. John Doe' },
-    { label: 'License:', value: '12345' },
-    { label: 'Contact:', value: '+1 123 456 7890' },
-    { label: 'DEA Number:', value: 'ABC123' },
-  ];
-
-  const patientInfo = [
-    { label: 'Patient Name:', value: 'Jane Smith' },
-    { label: 'Date of Birth:', value: '30/09/1993' },
-    { label: 'Gender:', value: 'Female' },
-    { label: 'Address:', value: '123 Main St, Anytown, USA' },
-  ];
-
-  const medications = [
-    {
-      medication: 'Amoxicillin',
-      dosage: '500mg',
-      instructions: 'Take one tablet by mouth daily',
-      quantity: '#30 tablets',
-    },
-    // Add more medications here if needed
-  ];
-
+export default function PrescriptionCard({ isVisible, setIsVisible, prescriptionData }) {
   return (
-    <div className="prescription-pad">
-      <div className="header">
-        <h1>Prescription</h1>
-      </div>
-      <table className="table">
-        <tbody>
-          <tr>
-            <th colSpan="2">Doctor Information</th>
-            <th colSpan="2">Patient Information</th>
-          </tr>
-          {doctorInfo.map((item, index) => (
-            <tr key={index}>
-              <td>{item.label}</td>
-              <td>{item.value}</td>
-              {index < patientInfo.length ? (
-                <>
-                  <td>{patientInfo[index].label}</td>
-                  <td>{patientInfo[index].value}</td>
-                </>
-              ) : (
-                <td></td>
-              )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="prescription-details">
-        <h2>Medications</h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Medication</th>
-              <th>Dosage</th>
-              <th>Instructions</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {medications.map((med, index) => (
-              <tr key={index}>
-                <td>{med.medication}</td>
-                <td>{med.dosage}</td>
-                <td>{med.instructions}</td>
-                <td>{med.quantity}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <>
+      {isVisible && (
+        <div className="prescription_card_container">
+          <div className="prescription_card_container__top">
+            <MdCancel
+              className="prescription_card_container__top__button"
+              onClick={setIsVisible}
+            />
+          </div>
+          <div className="prescription_card_container__bottom">
+            <h2 className="prescription_title">Prescription</h2>
+            <div className="prescription_card_container__bottom__prescription_table_container">
+              <table className="prescription_card_container__bottom__prescription_table_container__table">
+                <tbody>
+                  <tr>
+                    <td className="prescription_label">Doctor:</td>
+                    <td className="prescription_value">{prescriptionData.doctorName}</td>
+                  </tr>
+                  <tr>
+                    <td className="prescription_label">Patient Name:</td>
+                    <td className="prescription_value">{prescriptionData.patientName}</td>
+                  </tr>
+                  <tr>
+                    <td className="prescription_label">Date:</td>
+                    <td className="prescription_value">{prescriptionData.prescriptionDate}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="prescription_medications">
+              <h3 className="prescription_medications_title">Medications:</h3>
+              <div className="prescription_medications_container">
+                <table className="prescription_medications_container__table">
+                  <tbody>
+                    {prescriptionData.medications.map((medication, index) => (
+                      <tr key={index}>
+                        <td className="prescription_label">{medication.name}:</td>
+                        <td className="prescription_value">{medication.dosage}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <p className="prescription_notes">
+            <strong>Notes:</strong> {prescriptionData.notes}
+          </p>
+        </div>
+      )}
+    </>
   );
-};
-
-export default PrescriptionPad;
+}

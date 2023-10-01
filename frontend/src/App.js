@@ -59,12 +59,6 @@ const wagmiConfig = createConfig({
 
 
 export default function App() {
-  const [signature, setSignature] = useState('');
-
-  console.log(signature);
-  const handleSignature = (signature) => {
-    setSignature(signature);
-  };
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}  modalSize="compact" coolMode showRecentTransactions={true}

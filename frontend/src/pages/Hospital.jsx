@@ -6,20 +6,32 @@ import ConnectButton from "../components/ConnectButton";
 import { FcInfo } from "react-icons/fc";
 import { useState } from "react";
 import { FaStethoscope } from "react-icons/fa";
+import Popup from "../components/Popup";
+import useToggle from "../hooks/useToggle";
 
 export default function Hospital(params) {
   const [intent, setIntent] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [verified, setVerified] = useState(false);
+  const [isLoading, setIsLoading] = useToggle(false);
+  const [verified, setVerified] = useToggle(false);
+  const [isPopupVisible, setIsPopupVisible] = useToggle(false);
+
+  const handleClick = () => {
+    setIsPopupVisible();
+    console.log("clicked");
+  }
+  const popClick = () => {
+    console.log("clicked");
+  }
   return (
     <>
       <Navbar />
       <div className="hospital_container">
+        {
+          isPopupVisible &&
+            <Popup setIsVisible={setIsPopupVisible} what={"consultation"} who={"doctor"} title={"Healthcare Data Token (HDT)"} clickHandle={popClick}></Popup>
+        }
         <div className="hospital_container__left">
           <img src={doctor} alt="doctor" className="doctor-img" />
-          {/* <div class="hospital_container__left__bubble">
-            Your doctor is requesting access to your latest lab reports
-          </div> */}
         </div>
         <div className="hospital_container__right">
           <div className="hospital_container__right__title">
@@ -73,6 +85,7 @@ export default function Hospital(params) {
                 text={"Grant Access 🔓"}
                 height={"50px"}
                 width={"150px"}
+                clickHandle={handleClick}
               ></ConnectButton>
             </div>
           </div>

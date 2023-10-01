@@ -1,49 +1,49 @@
-.prescription-table {
-    margin: 20px;
-    font-family: Arial, sans-serif;
-  
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  
-      th,
-      td {
-        padding: 12px 16px;
-        text-align: left;
-        border-bottom: 1px solid #f0f0f0;
+.prescription_table_container {
+  font-family: Arial, sans-serif;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .prescription_table_container__table {
+    background-color: white;
+    border-collapse: collapse;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 20px;
+
+    .prescription_table_container__table__header__heading,
+    .prescription_table_container__table__row__data {
+      padding: 12px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      text-align: center;
+      color: #333;
+    }
+
+    .prescription_table_container__table__row__data {
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
       }
-  
-      th {
-        background-color: #f8f8f8;
-        color: #333;
-        font-weight: bold;
-      }
-  
-      tbody tr {
-        transition: background-color 0.2s;
-      }
-  
-      tbody tr:hover {
-        background-color: #f5f5f5;
-      }
-  
-      a {
-        color: #007bff;
-        text-decoration: none;
-        transition: color 0.2s;
-  
-        &:hover {
-          color: #0056b3;
-          text-decoration: underline;
-        }
-      }
-  
-      td:last-child {
-        text-align: center;
+      &:active {
+        transform: translateY(2px);
+        box-shadow: none;
       }
     }
+
+    .prescription_table_container__table__header__heading {
+      background-color: var(--pink-0);
+      font-weight: bold;
+    }
+
+    tbody tr {
+      transition: background-color 0.2s;
+    }
+
+    tbody tr:hover {
+      background-color: #f5f5f5; /* Light gray on hover */
+    }
   }
-  
+}
