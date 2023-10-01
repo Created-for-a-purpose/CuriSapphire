@@ -8,11 +8,24 @@ import { SiOpenai } from "react-icons/si";
 import { BsPrescription2 } from "react-icons/bs";
 import { useState } from "react";
 import { OpenAI } from "openai"
+import useToggle from "../hooks/useToggle";
+import Popup from "../components/Popup";
 
 export default function Pharmacy() {
   const [intent, setIntent] = useState("");
   const [prescriptionZkp, setPrescriptionZkp] = useState("");
   const apiKey = "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"
+
+  const [isPopupVisible, setIsPopupVisible] = useToggle(false);
+
+  const handleClick = () => {
+    setIsPopupVisible();
+    console.log("clicked");
+  }
+
+  const popClick = () => {
+    console.log("clicked");
+  }
 
   const openAi = new OpenAI({
     apiKey,
@@ -37,6 +50,10 @@ export default function Pharmacy() {
     <>
       <Navbar></Navbar>
       <div className="pharmacy_container">
+      {
+          isPopupVisible &&
+            <Popup setIsVisible={setIsPopupVisible} title={"Medicine Dispensing Token (MDT)"} what={"medicine purchase"} who={"pharmacy"} clickHandle={popClick}></Popup>
+        }
         <div className="pharmacy_container__left">
           <img
             src={pharmacyLogo}
@@ -89,6 +106,7 @@ export default function Pharmacy() {
                 text={"Generate ZKP"}
                 height={"50px"}
                 width={"200px"}
+                clickHandle = {handleClick}
               ></ConnectButton>
             </div>
           </div>

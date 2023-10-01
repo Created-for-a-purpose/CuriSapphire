@@ -19,13 +19,16 @@ export default function Hospital(params) {
     setIsPopupVisible();
     console.log("clicked");
   }
+  const popClick = () => {
+    console.log("clicked");
+  }
   return (
     <>
       <Navbar />
       <div className="hospital_container">
         {
           isPopupVisible &&
-            <Popup setIsVisible={setIsPopupVisible}></Popup>
+            <Popup setIsVisible={setIsPopupVisible} what={"consultation"} who={"doctor"} title={"Healthcare Data Token (HDT)"} clickHandle={popClick}></Popup>
         }
         <div className="hospital_container__left">
           <img src={doctor} alt="doctor" className="doctor-img" />
