@@ -11,8 +11,8 @@ import useToggle from "../hooks/useToggle";
 
 export default function Hospital(params) {
   const [intent, setIntent] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [verified, setVerified] = useState(false);
+  const [isLoading, setIsLoading] = useToggle(false);
+  const [verified, setVerified] = useToggle(false);
   const [isPopupVisible, setIsPopupVisible] = useToggle(false);
 
   const handleClick = () => {

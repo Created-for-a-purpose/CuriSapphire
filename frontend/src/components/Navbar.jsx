@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/components/Navbar.scss";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Link } from "react-router-dom";
+import { useToggle } from "../hooks/useToggle"
 
 const Navbar = () => {
-  const [showDashboardDropdown, setShowDashboardDropdown] = useState(false);
+  const [showDashboardDropdown, setShowDashboardDropdown] = useToggle(false);
 
   const toggleDashboardDropdown = () => {
-    setShowDashboardDropdown(!showDashboardDropdown);
+    setShowDashboardDropdown();
   };
 
   return (
