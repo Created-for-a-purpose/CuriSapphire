@@ -692,3 +692,79 @@ export const tokenizationAbi = [
     "type": "function"
   }
 ]
+
+export const reportVerifierAddress = "0x59B30dE0b96eb037102891675f2c26Efd7ca4455"
+export const reportVerifierAbi = [
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[2]",
+        "name": "_pA",
+        "type": "uint256[2]"
+      },
+      {
+        "internalType": "uint256[2][2]",
+        "name": "_pB",
+        "type": "uint256[2][2]"
+      },
+      {
+        "internalType": "uint256[2]",
+        "name": "_pC",
+        "type": "uint256[2]"
+      },
+      {
+        "internalType": "uint256[1]",
+        "name": "_pubSignals",
+        "type": "uint256[1]"
+      }
+    ],
+    "name": "verifyProof",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
+
+export const pxVerifierAddress = "0xEc4a8372C3b218410DD9D28Ea5E95435b9aa755F"
+export const pxVerifierAbi = [
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[2]",
+        "name": "_pA",
+        "type": "uint256[2]"
+      },
+      {
+        "internalType": "uint256[2][2]",
+        "name": "_pB",
+        "type": "uint256[2][2]"
+      },
+      {
+        "internalType": "uint256[2]",
+        "name": "_pC",
+        "type": "uint256[2]"
+      },
+      {
+        "internalType": "uint256[1]",
+        "name": "_pubSignals",
+        "type": "uint256[1]"
+      }
+    ],
+    "name": "verifyProof",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

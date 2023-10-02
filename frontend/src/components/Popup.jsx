@@ -1,8 +1,8 @@
 import "../styles/components/Popup.scss";
 import ConnectButton from "./ConnectButton";
 
-export default function Popup({ setIsVisible, title, who, what, clickHandle }) {
-  console.log(clickHandle);
+export default function Popup({ verified, setIsVisible, title, who, what, clickHandle }) {
+  
   const handleClick = () => {
     clickHandle();
   };
@@ -14,7 +14,8 @@ export default function Popup({ setIsVisible, title, who, what, clickHandle }) {
           <p className="popup_container__content__body">
             🟢 A data access token will be transferred to your {who}. <br /> 🟢
             The validity of the token is <span>1 hour</span>. <br /> 🟢 You will
-            be charged <span>1 Rose</span> as {what} fee for this transaction.
+            be charged <span>1 Rose</span> as {what} fee for this transaction.<br/>
+            {verified ? "🟢 Requested proof is verified": "⚠️ Requested proof is not verified"}
           </p>
           <div className="popup_container__content__confirm">
             <ConnectButton

@@ -8,18 +8,17 @@ export default function Reports() {
 
   const sig = useSignature();
 
-  console.log('report' + sig.signature);
   const reports = [
     [
       "1",
       "Hospital A",
-      "Dr. Smith",
-      "Endocarditis",
+      "Dr. Snape",
+      "Viral Infection",
     ],
     [
       "2",
-      "Hospital A",
-      "Dr. Smith",
+      "Hospital B",
+      "Dr. Baggins",
       "Endocarditis",
     ]
   ];
