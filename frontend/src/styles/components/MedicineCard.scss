@@ -1,0 +1,61 @@
+$spacing-unit: 1rem; // Adjust as needed
+$border-color: #ccc;
+$black: #000;
+$card-width: 250px; // Fixed width for each card
+$card-bg-color: #f5f5f5; // Background color
+$hover-bg-color: #e0e0e0; // Background color on hover
+$shadow-color: rgba(0, 0, 0, 0.2); // Box shadow color
+
+.medicine-card {
+  width: $card-width;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-unit;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  margin: 0.5rem;
+  width: 95%;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+
+  &:hover {
+    background-color: $hover-bg-color;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px $shadow-color;
+  }
+
+  .medicine-card-image {
+    max-width: 100px;
+    margin: 0 auto $spacing-unit;
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+  }
+
+  .medicine-card-content {
+    display: flex;
+    flex-direction: column;
+
+    .medicine-card-content-name {
+      font-weight: bold;
+      color: $black;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .medicine-card-content-info {
+      color: var(--pink-1);
+      text-align: center;
+
+      .medicine-card-content-quantity,
+      .medicine-card-content-dose {
+        margin-top: 0.2rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

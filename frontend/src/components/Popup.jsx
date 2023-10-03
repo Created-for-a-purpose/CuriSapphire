@@ -15,7 +15,7 @@ export default function Popup({ verified, setIsVisible, title, who, what, clickH
             🟢 A data access token will be transferred to your {who}. <br /> 🟢
             The validity of the token is <span>1 hour</span>. <br /> 🟢 You will
             be charged <span>1 Rose</span> as {what} fee for this transaction.<br/>
-            {verified ? "🟢 Requested proof is verified": "⚠️ Requested proof is not verified"}
+            {typeof verified !== "boolean" ? "" : (verified ? "🟢 Requested proof is verified": "⚠️ Requested proof is not verified")}
           </p>
           <div className="popup_container__content__confirm">
             <ConnectButton
