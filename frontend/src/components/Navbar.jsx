@@ -38,7 +38,7 @@ const Navbar = () => {
           <Link to="/pharmacy" className="navbar_container__middle__link">
             Pharmacy
           </Link>
-          <Link to="/pharmacy" className="navbar_container__middle__link">
+          <Link to="/marketplace" className="navbar_container__middle__link">
             Marketplace
           </Link>
         </div>

@@ -23,6 +23,7 @@ import Pharmacy from './pages/Pharmacy';
 import Hospital from './pages/Hospital';
 
 import { sapphire } from "./utils/chainData"
+import MarketPlace from './pages/MarketPlace';
 
 const { chains, publicClient } = configureChains(
   [sapphire, sepolia],
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="/dashboard/reports" element={<Reports />} />
           <Route path="/pharmacy" element={<Pharmacy />} />
           <Route path="/hospital" element={<Hospital />} />
+          <Route path="/marketplace" element={<MarketPlace />} />
         </Routes>
       </RainbowKitProvider>
     </WagmiConfig>
