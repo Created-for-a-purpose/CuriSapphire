@@ -16,6 +16,7 @@ $black: #000;
   &:hover {
     /* Add hover effect styles here */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+    cursor: pointer;
   }
 
   &:active {
@@ -45,7 +46,11 @@ $black: #000;
 
   &__right {
     flex: 2;
-
+    &__logo{
+      width: 20px;
+      height: 20px;
+      margin-left: 6px;
+    }
     &__title_container {
       padding: 10px;
 
@@ -57,7 +62,7 @@ $black: #000;
       }
 
       &__subtitle {
-        font-size: 14px;
+        font-size: 17px;
         color: #777;
         text-align: left;
       }
@@ -66,7 +71,7 @@ $black: #000;
     &__price {
       padding: 10px;
       display: flex;
-      margin-top: 30%;
+      margin-top: 20%;
       &__title {
         font-weight: bold;
         color: $black; /* Use your text color here */

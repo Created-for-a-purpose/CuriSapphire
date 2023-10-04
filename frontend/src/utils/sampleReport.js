@@ -1,5 +1,12 @@
 export const hospitalWallet = "0xAFdDc92933bFBe7FB967AE0A18a771E463F3Ad85"
 export const pharmacyWallet = "0xAFdDc92933bFBe7FB967AE0A18a771E463F3Ad85"
+export const researcherWallet = "0xAFdDc92933bFBe7FB967AE0A18a771E463F3Ad85"
+
+export const sampleResearchData = {
+  "Echocardiogram lab reports": "Sample Echocardiogram lab reports",
+   "Treatment history": "Sample Treatment history",
+   "Financial data": "Sample Financial data",
+}
 
 export const reportData1 = {
     patientName: "John Doe",

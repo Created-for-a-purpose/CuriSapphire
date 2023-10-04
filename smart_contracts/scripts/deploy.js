@@ -20,7 +20,7 @@ async function main() {
 
   gasless.setDataContract(data.target);
 
-  const tokenization = await ethers.deployContract("Tokenization")
+  const tokenization = await ethers.deployContract("Tokenization", {value: ethers.parseEther("25")})
   await tokenization.waitForDeployment();
 
   console.log(`Tokenization deployed to ${tokenization.target}`);

@@ -13,9 +13,12 @@ export default function LandingPage() {
   const [text, setText] = useState("Get started");
 
   const chunks = useHighlight({
-    text: `lorem ipsum lorem
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, cupiditate? Aut quo culpa est quis aperiam. Dolorem voluptates nulla error ipsa optio at excepturi quisquam dolor, illum enim neque repellat!`,
-    query: ["lorem ipsum lorem"],
+    text: `Curi-Sapphire
+    Your Health, Your Data, Your Control 🛂
+    CuriSapphire empowers user privacy by leveraging the Sapphire paratime and ZKPs. 
+    Enhanced privacy and tokenized data allow us to help create the first-ever responsible data economy
+    `,
+    query: ["Curi-Sapphire"],
   });
   function Text() {
     return (
@@ -72,6 +75,7 @@ export default function LandingPage() {
         <div className="landing_page__left">
           <Text></Text>
           <ConnectButton height={"50px"} width={"200px"} text={text} clickHandle={proceed}/>
+          <b>Powered by Sapphire 💪</b>
         </div>
         <div className="landing_page__right">
           <img src={img} alt="img"></img>

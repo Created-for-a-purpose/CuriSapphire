@@ -42,7 +42,6 @@ export default function Pharmacy() {
   const provider = new ethers.BrowserProvider(window.ethereum);
   const sapphireWrappedProvider = sapphire.wrap(provider);
   const apiKey = "API_KEY";
- 
 
   const handleClick = async () => {
     if (prescriptionZkp === "") return;

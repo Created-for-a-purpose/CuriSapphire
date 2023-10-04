@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/components/ResearchCard.scss";
+import { sapphire } from "../utils/chainData"
 
 const HouseCard = ({
   image,
@@ -23,20 +24,20 @@ const HouseCard = ({
       <div className="house_card_container__right">
         <div className="house_card_container__right__title_container">
           <div className="house_card_container__right__title_container__title">
-            Name : {name}
+            {name}<br/>0x1234...5678
           </div>
           <div className="house_card_container__right__title_container__subtitle">
-            Title : {title}
+            <br/>{title}
           </div>
           <div className="house_card_container__right__title_container__subtitle">
-            Stack Duration : {duration}
+            Data stake Duration : {duration}
           </div>
         </div>{" "}
         <div className="house_card_container__right__price">
           <div className="house_card_container__right__price__title">Stake Reward : </div>
           <div className="house_card_container__right__price__price">
-            &nbsp; {stakeAward} Rose
-          </div>
+            &nbsp; {stakeAward} ROSE 
+          </div><img className="house_card_container__right__logo" src={sapphire.iconUrl}/>
         </div>{" "}
       </div>
     </div>

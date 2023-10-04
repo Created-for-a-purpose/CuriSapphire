@@ -19,6 +19,15 @@ struct pxData {
     uint256 timestamp;
 }
 
+struct researchData {
+    address dataProvider;
+    string requiredData;
+    uint256 issueTimestamp;
+    uint256 stakeDurationInDays;
+    uint256 stakeAmount;
+    bool stakeExpired;
+}
+
 contract Tokenization {
     string public name;
     string public symbol;
@@ -26,13 +35,16 @@ contract Tokenization {
 
     mapping(uint256 => reportData) private report;
     mapping(uint256 => pxData) private px;
+    mapping(uint256 => researchData) private stakedData;
 
     mapping(uint256 => address) private reportOwner;
     mapping(uint256 => address) private pxOwner;
+    mapping(uint256 => address) private stakedDataHolder;
 
     mapping(address => uint256[]) private tokensOwned;
+    mapping(address => uint256[]) private stakedDataHolded;
 
-    constructor() {
+    constructor() payable {
         name = "Healthcare token";
         symbol = "HT";
     }
@@ -137,5 +149,61 @@ contract Tokenization {
         }
 
         return pxData(patient, "", "", 0);
+    }
+
+    function createResearchDataToken(
+        address researcher,
+        researchData memory _researchData,
+        bytes memory signature
+    ) external authorizedOnly(_researchData.dataProvider, signature) {
+        require(
+            _researchData.stakeDurationInDays > 0,
+            "Invalid stake duration"
+        );
+        _researchData.issueTimestamp = block.timestamp;
+        _researchData.stakeExpired = false;
+        researchData memory data = _researchData;
+        uint256 id = totalSupply;
+        stakedData[id] = data;
+        stakedDataHolder[id] = researcher;
+        totalSupply++;
+        stakeResearchDataToken(payable(data.dataProvider), data.stakeAmount);
+        stakedDataHolded[researcher].push(id);
+    }
+
+    function stakeResearchDataToken(
+        address payable dataProvider,
+        uint256 value
+    ) internal {
+        require(address(this).balance >= value, "Insufficient funds");
+        dataProvider.transfer(value);
+    }
+
+    function accessResearchData(
+        address dataProvider,
+        address accessor,
+        bytes memory signature
+    )
+        external
+        view
+        authorizedOnly(accessor, signature)
+        returns (researchData memory)
+    {
+        uint256[] memory tokens = stakedDataHolded[accessor];
+        for (uint i = 0; i < tokens.length; i++) {
+            if (
+                stakedDataHolder[tokens[i]] == accessor &&
+                stakedData[tokens[i]].dataProvider == dataProvider &&
+                stakedData[tokens[i]].issueTimestamp +
+                    stakedData[tokens[i]].stakeDurationInDays *
+                    24 hours *
+                    3600 seconds >
+                block.timestamp &&
+                stakedData[tokens[i]].stakeExpired == false
+            ) {
+                return stakedData[tokens[i]];
+            }
+        }
+        revert("Data expired or no data found");
     }
 }

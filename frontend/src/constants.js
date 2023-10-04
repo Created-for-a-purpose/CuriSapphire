@@ -414,12 +414,73 @@ export const proxyAbi = [
   }
 ]
 
-export const tokenizationAddress = "0x3c64FdE750E300C577853A53d7EF352c3FeB3e64"
+export const tokenizationAddress = "0x7cD2EdAC4460D2D889dF7be2ff845403330485e1"
 export const tokenizationAbi = [
   {
     "inputs": [],
-    "stateMutability": "nonpayable",
+    "stateMutability": "payable",
     "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "dataProvider",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "accessor",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "accessResearchData",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "dataProvider",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "requiredData",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "issueTimestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "stakeDurationInDays",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "stakeAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "stakeExpired",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct researchData",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [
@@ -519,6 +580,61 @@ export const tokenizationAbi = [
     "name": "createReportToken",
     "outputs": [],
     "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "researcher",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "dataProvider",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "requiredData",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "issueTimestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "stakeDurationInDays",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "stakeAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "stakeExpired",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct researchData",
+        "name": "_researchData",
+        "type": "tuple"
+      },
+      {
+        "internalType": "bytes",
+        "name": "signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "createResearchDataToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -733,6 +849,44 @@ export const reportVerifierAbi = [
 
 export const pxVerifierAddress = "0xEc4a8372C3b218410DD9D28Ea5E95435b9aa755F"
 export const pxVerifierAbi = [
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[2]",
+        "name": "_pA",
+        "type": "uint256[2]"
+      },
+      {
+        "internalType": "uint256[2][2]",
+        "name": "_pB",
+        "type": "uint256[2][2]"
+      },
+      {
+        "internalType": "uint256[2]",
+        "name": "_pC",
+        "type": "uint256[2]"
+      },
+      {
+        "internalType": "uint256[1]",
+        "name": "_pubSignals",
+        "type": "uint256[1]"
+      }
+    ],
+    "name": "verifyProof",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
+
+export const ageVerifierAddress = "0x004BC43e2269cCDa2C18E937C52Cd24F560cCdb5"
+export const ageVerifierAbi = [
   {
     "inputs": [
       {

@@ -15,7 +15,7 @@ const Navbar = () => {
     <>
       <div className="navbar_container">
         <div className="navbar_container__left">
-          <div className="navbar_container__left__name">💎 zk-Sapphire  </div>
+          <div className="navbar_container__left__name">💎 CuriSapphire</div>
         </div>
         <div className="navbar_container__middle">
           <div
@@ -38,7 +38,7 @@ const Navbar = () => {
           <Link to="/pharmacy" className="navbar_container__middle__link">
             Pharmacy
           </Link>
-          <Link to="/pharmacy" className="navbar_container__middle__link">
+          <Link to="/marketplace" className="navbar_container__middle__link">
             Dataverse
           </Link>
         </div>
