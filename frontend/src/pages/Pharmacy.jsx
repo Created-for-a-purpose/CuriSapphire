@@ -41,7 +41,9 @@ export default function Pharmacy() {
   const account = useAccount();
   const provider = new ethers.BrowserProvider(window.ethereum);
   const sapphireWrappedProvider = sapphire.wrap(provider);
-  const apiKey = "API_KEY";
+  // const apiKey = "API_KEY";
+  const apiKey = "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"
+
   const handleClick = async () => {
     if (prescriptionZkp === "") return;
     setIsLoading(true);
@@ -76,6 +78,15 @@ export default function Pharmacy() {
     }, 1500);
   };
 
+  const getTokenizationContract = async () => {
+    const tokenizationContract = new ethers.Contract(
+      tokenizationAddress,
+      tokenizationAbi,
+      await sapphireWrappedProvider.getSigner()
+    );
+    return tokenizationContract;
+  }
+
   const popClick = async () => {
     if (!proof || !verified) return;
     try {
@@ -86,11 +97,7 @@ export default function Pharmacy() {
         timestamp: Math.floor(Date.now() / 1000),
       };
 
-      const tokenizationContract = new ethers.Contract(
-        tokenizationAddress,
-        tokenizationAbi,
-        await sapphireWrappedProvider.getSigner()
-      );
+      const tokenizationContract = await getTokenizationContract();
       const response = await tokenizationContract.createPxToken(
         pharmacyWallet,
         pxData,
@@ -105,6 +112,21 @@ export default function Pharmacy() {
       console.log(err);
     }
   };
+  const orderMedicine = async () => {
+    try{
+    const tokenizationContract = await getTokenizationContract();
+    const response = await tokenizationContract.createPxToken(pharmacyWallet, {
+      patient: account.address,
+      issuerDetails: "Self",
+      medicineDetails: JSON.stringify(medicine),
+      timestamp: Math.floor(Date.now() / 1000),
+    }, toBytes(signature.signature), { value: ethers.parseEther("1") });
+    addRecentTransaction({
+      hash: response.hash,
+      description: "Order medicine",
+    });
+  } catch (err) { console.log(err) }
+  }
 
   const openAi = new OpenAI({
     apiKey,
@@ -112,6 +134,7 @@ export default function Pharmacy() {
   });
 
   const handleIntent = async () => {
+    if (intent === "") return;
     const chat = await openAi.chat.completions.create({
       messages: [
         {
@@ -147,7 +170,7 @@ export default function Pharmacy() {
           <OTCPopup
             setIsVisible={setIsPrescriptionVisible}
             title={"Your Order"}
-            clickHandle={popClick}
+            clickHandle={orderMedicine}
             medicine={medicine}
           ></OTCPopup>
         )}

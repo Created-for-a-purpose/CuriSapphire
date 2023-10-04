@@ -39,7 +39,7 @@ const Navbar = () => {
             Pharmacy
           </Link>
           <Link to="/pharmacy" className="navbar_container__middle__link">
-            Marketplace
+            Dataverse
           </Link>
         </div>
         <div className="navbar_container__right">
